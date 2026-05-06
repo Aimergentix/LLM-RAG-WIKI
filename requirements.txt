@@ -1,0 +1,12 @@
+# llm-rag-wiki runtime lockfile.
+#
+# Source of truth for *version ranges* is `pyproject.toml`
+# ([project.dependencies] and [project.optional-dependencies]). This file
+# pins the exact versions used in the reference deployment so
+# `pip install -r requirements.txt` is reproducible.
+#
+# When upgrading: bump here AND verify the range in `pyproject.toml`.
+PyYAML==6.0.2
+chromadb==0.5.23
+sentence-transformers==3.3.1
+mcp==1.27.0

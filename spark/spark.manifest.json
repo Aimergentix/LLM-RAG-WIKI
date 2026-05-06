@@ -1,0 +1,53 @@
+{
+  "$schema": "https://spark.github.com/schema/manifest.v1.json",
+  "name": "llm-rag-wiki",
+  "version": "0.1.0",
+  "description": "Local-first wiki + RAG + persona micro-app over the K1 bridge.",
+  "entry": "index.html",
+  "mcp": {
+    "servers": [
+      {
+        "id": "local-bridge",
+        "transport": "http",
+        "url": "http://127.0.0.1:8765",
+        "auth": {
+          "type": "bearer",
+          "token_env": "VITE_BRIDGE_TOKEN"
+        },
+        "tools": [
+          {
+            "name": "rag.retrieve",
+            "method": "GET",
+            "path": "/retrieve",
+            "description": "Read-only RAG retrieval over the local wiki index."
+          },
+          {
+            "name": "rag.status",
+            "method": "GET",
+            "path": "/status",
+            "description": "Pipeline health snapshot (counts only)."
+          },
+          {
+            "name": "persona.list",
+            "method": "GET",
+            "path": "/persona/list",
+            "description": "List available persona IDs (no rule text)."
+          },
+          {
+            "name": "persona.compile",
+            "method": "POST",
+            "path": "/persona/compile",
+            "description": "Compose an ad-hoc persona profile (ephemeral; not persisted)."
+          }
+        ]
+      }
+    ]
+  },
+  "permissions": {
+    "network": ["http://127.0.0.1:8765"],
+    "kv": {
+      "scope": "ui-state-only",
+      "purpose": "Last query string and UI preferences. Never pipeline data (ADR-0003 \u00a74)."
+    }
+  }
+}

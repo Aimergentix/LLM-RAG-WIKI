@@ -1,0 +1,53 @@
+# PEP 621 packaging metadata.
+# `project.toml` (custom v1 schema) remains the human-facing project descriptor;
+# this file is the machine-facing install spec used by pip and pytest.
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "llm-rag-wiki"
+version = "2.0.0a0"
+description = "Consolidated three-layer local pipeline: wiki builder, RAG retrieval, MCP persona delivery."
+readme = "_README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+authors = [{ name = "Aranda Möller", email = "aimergent@mailbox.org" }]
+dependencies = [
+    "PyYAML>=6.0.1",
+]
+
+[project.optional-dependencies]
+rag = [
+    "chromadb>=0.5.0",
+    "sentence-transformers>=3.0.0",
+]
+mcp = [
+    "mcp>=1.0.0",
+]
+spark = [
+    "fastapi>=0.111",
+    "uvicorn[standard]>=0.29",
+    "pydantic>=2.0",
+]
+dev = [
+    "pytest>=8.0.0",
+    "ruff>=0.4.0",
+    "httpx>=0.27",
+]
+
+[project.scripts]
+rag-ingest = "rag.ingest:main"
+rag-retrieve = "rag.retrieve:main"
+persona-mcp = "persona_mcp.server:mcp.run"
+
+[tool.setuptools]
+package-dir = { "" = "src" }
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["rag*", "wiki*", "persona_mcp*", "spark_bridge*"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
