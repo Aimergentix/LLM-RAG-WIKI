@@ -13,7 +13,7 @@ date = "2026-05-01"
 
 [maintainer]
 name = "Aranda Möller"
-email = "aimergent@mailbox.org"
+email = ""
 
 [compat]
 python = "3.11"

@@ -12,7 +12,7 @@ description = "Consolidated three-layer local pipeline: wiki builder, RAG retrie
 readme = "_README.md"
 requires-python = ">=3.11"
 license = { text = "MIT" }
-authors = [{ name = "Aranda Möller", email = "aimergent@mailbox.org" }]
+authors = [{ name = "Aranda Möller", email = "" }]
 dependencies = [
     "PyYAML>=6.0.1",
 ]

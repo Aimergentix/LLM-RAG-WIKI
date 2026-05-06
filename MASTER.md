@@ -1,6 +1,6 @@
 # llm-rag-wiki — Master Specification v1.0
 
-**Maintainer:** Aranda Moller · aimergent@mailbox.org
+**Maintainer:** Aranda Moller · 
 **Status:** stable · 2026-05-01
 
 ---
